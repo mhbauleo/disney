@@ -1,7 +1,13 @@
 const express = require('express')
 const morgan = require('morgan')
+const dotenv = require("dotenv");
+dotenv.config();
 
+const { dbConnection } = require('./model/db/connection')
 const mainRouter = require('./routes/main')
+
+// Database Connection
+dbConnection()
 
 const app = express()
 
