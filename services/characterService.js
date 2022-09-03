@@ -20,4 +20,8 @@ const updateCharacterById = async (characterId, newCharacter) => {
   return count
 }
 
-module.exports = { createNewCharacter, getCharacters, updateCharacterById };
+const deleteCharacterById = async (characterId) => {
+  return await characterDao.deleteCharacterById(characterId)
+}
+
+module.exports = { createNewCharacter, getCharacters, updateCharacterById, deleteCharacterById };

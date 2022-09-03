@@ -36,4 +36,13 @@ const updateCharacterById = async (req, res) => {
   }
 }
 
-module.exports = { createNewCharacter, getAllCharacters, updateCharacterById };
+const deleteCharacterById = async (req, res) => {
+  const count = await characterService.deleteCharacterById(req.params.id)
+  if(count > 0) {
+    res.json({ status: "success", data: null })
+  } else {
+    res.status(404).json({ status: "fail", data : { "message" : "You couldn't delete the character" } })
+  }
+}
+
+module.exports = { createNewCharacter, getAllCharacters, updateCharacterById, deleteCharacterById };

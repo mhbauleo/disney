@@ -39,7 +39,19 @@ const updateCharacterById = async (characterId, newCharacter) => {
     });
   } catch (e) {
     console.log(e);
-    return [ -1 ]
+    return [-1];
+  }
+};
+
+const deleteCharacterById = async (characterId) => {
+  try {
+    return await Character.destroy({
+      where: {
+        id: characterId,
+      },
+    });
+  } catch (e) {
+    console.log(e);
   }
 };
 
@@ -48,4 +60,5 @@ module.exports = {
   getAllCharacters,
   getFilteredCharacters,
   updateCharacterById,
+  deleteCharacterById
 };
