@@ -1,5 +1,9 @@
 const characterDao = require("../model/daos/characterDao");
 
+const createNewCharacter = async (newCharacter) => {
+  return await characterDao.createNewCharacter(newCharacter);
+};
+
 const getCharacters = async (query) => {
   const isEmpty = Object.keys(query).length === 0;
   if (isEmpty) {
@@ -11,4 +15,4 @@ const getCharacters = async (query) => {
   }
 };
 
-module.exports = { getCharacters };
+module.exports = { createNewCharacter, getCharacters };

@@ -14,6 +14,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan("common"))
+app.use('/images', express.static('./images'))
 
 app.use('/', mainRouter)
 

@@ -1,5 +1,9 @@
 const Character = require("../models/characterModel");
 
+const createNewCharacter = async (newCharacter) => {
+    return await Character.create(newCharacter)
+}
+
 const getAllCharacters = async () => {
   try {
     const characters = await Character.findAll({
@@ -22,4 +26,4 @@ const getFilteredCharacters = async (filters) => {
   }
 };
 
-module.exports = { getAllCharacters, getFilteredCharacters };
+module.exports = { createNewCharacter, getAllCharacters, getFilteredCharacters };
