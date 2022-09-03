@@ -1,8 +1,12 @@
 const Character = require("../models/characterModel");
 
 const createNewCharacter = async (newCharacter) => {
-    return await Character.create(newCharacter)
-}
+  try {
+    return await Character.create(newCharacter);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 const getAllCharacters = async () => {
   try {
@@ -11,7 +15,7 @@ const getAllCharacters = async () => {
     });
     return characters;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 };
 
@@ -22,8 +26,26 @@ const getFilteredCharacters = async (filters) => {
     });
     return characters;
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
 };
 
-module.exports = { createNewCharacter, getAllCharacters, getFilteredCharacters };
+const updateCharacterById = async (characterId, newCharacter) => {
+  try {
+    return await Character.update(newCharacter, {
+      where: {
+        id: characterId,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+    return [ -1 ]
+  }
+};
+
+module.exports = {
+  createNewCharacter,
+  getAllCharacters,
+  getFilteredCharacters,
+  updateCharacterById,
+};

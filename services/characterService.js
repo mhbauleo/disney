@@ -15,4 +15,9 @@ const getCharacters = async (query) => {
   }
 };
 
-module.exports = { createNewCharacter, getCharacters };
+const updateCharacterById = async (characterId, newCharacter) => {
+  const [ count ] = await characterDao.updateCharacterById(characterId, newCharacter)
+  return count
+}
+
+module.exports = { createNewCharacter, getCharacters, updateCharacterById };
