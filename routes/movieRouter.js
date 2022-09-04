@@ -7,5 +7,6 @@ const upload = require('../middlewares/multer')
 
 router.post('/', upload, movieController.createNewMovie)
 router.get('/', movieController.getAllMovies)
+router.get('/:id', movieController.getMovieDetails)
 
 module.exports = router

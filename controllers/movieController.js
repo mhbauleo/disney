@@ -20,8 +20,18 @@ const createNewMovie = async (req, res) => {
 };
 
 const getAllMovies = async (req, res) => {
-    const movies = await movieService.getMovies(req.query);
-    res.json({ status: "success", data: movies });
-  };
+  const movies = await movieService.getMovies(req.query);
+  res.json({ status: "success", data: movies });
+};
 
-module.exports = { createNewMovie, getAllMovies };
+const getMovieDetails = async (req, res) => {
+  const details = await movieService.getMovieDetails(req.params.id);
+  details
+    ? res.json({ status: "success", data: details })
+    : res.status(404).json({
+        status: "fail",
+        data: { message: "Movie not found" },
+      });
+};
+
+module.exports = { createNewMovie, getAllMovies, getMovieDetails };
