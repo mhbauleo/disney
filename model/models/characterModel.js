@@ -20,7 +20,7 @@ const Character = db.define("character", {
     allowNull: false,
   },
   weight: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   story: {
