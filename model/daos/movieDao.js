@@ -41,6 +41,48 @@ const createNewMovie = async (newMovie) => {
   }
 };
 
+const getAllMovies = async () => {
+  try {
+    const movies = await Movie.findAll({
+      attributes: ["image", "title", "date"],
+    });
+    return movies;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const buildQuery = (filters) => {
+  const { title, stars, genre, order } = filters;
+  const query = {};
+  query.include = [{ model: Genre }];
+  if (genre) {
+    query.include[0].where = {
+      id: genre,
+    };
+    query.include[0].required = true;
+  }
+  if (order) query.order = [["date", order]];
+  if (title || stars) {
+    const whereFilters = {};
+    if (title) whereFilters.title = title;
+    if (stars) whereFilters.stars = stars;
+    query.where = whereFilters;
+  }
+  return query;
+};
+
+const getFilteredMovies = async (filters) => {
+  try {
+    const movies = await Movie.findAll(buildQuery(filters));
+    return movies;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 module.exports = {
   createNewMovie,
+  getAllMovies,
+  getFilteredMovies,
 };

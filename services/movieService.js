@@ -13,4 +13,15 @@ const createNewMovie = async (newCharacter) => {
   });
 };
 
-module.exports = { createNewMovie };
+const getMovies = async (query) => {
+    const isEmpty = Object.keys(query).length === 0;
+    if (isEmpty) {
+      const movies = await movieDao.getAllMovies();
+      return movies;
+    } else {
+      const movies = await movieDao.getFilteredMovies(query);
+      return movies;
+    }
+  };
+
+module.exports = { createNewMovie, getMovies };

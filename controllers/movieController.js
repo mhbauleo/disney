@@ -19,4 +19,9 @@ const createNewMovie = async (req, res) => {
       });
 };
 
-module.exports = { createNewMovie };
+const getAllMovies = async (req, res) => {
+    const movies = await movieService.getMovies(req.query);
+    res.json({ status: "success", data: movies });
+  };
+
+module.exports = { createNewMovie, getAllMovies };
