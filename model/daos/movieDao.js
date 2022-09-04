@@ -82,17 +82,21 @@ const getFilteredMovies = async (filters) => {
 };
 
 const getMovieDetails = async (movieId) => {
-  return await Movie.findOne({
-    where: {
-      id: movieId,
-    },
-    include: [{ model: Character }, { model: Genre }],
-  });
+  try {
+    return await Movie.findOne({
+      where: {
+        id: movieId,
+      },
+      include: [{ model: Character }, { model: Genre }],
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 module.exports = {
   createNewMovie,
   getAllMovies,
   getFilteredMovies,
-  getMovieDetails,
+  getMovieDetails
 };
