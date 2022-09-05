@@ -18,6 +18,16 @@ const getAllCharacters = async (req, res) => {
   res.json(characters);
 };
 
+const getCharacterDetails = async (req, res) => {
+  const details = await characterService.getCharacterDetails(req.params.id)
+  details
+    ? res.json({ status: "success", data: details })
+    : res.status(404).json({
+        status: "fail",
+        data: { message: "Character not found" },
+      });
+}
+
 const updateCharacterById = async (req, res) => {
   const image = req.file.path;
   const { name, age, weight, story } = req.body;
@@ -45,4 +55,4 @@ const deleteCharacterById = async (req, res) => {
   }
 }
 
-module.exports = { createNewCharacter, getAllCharacters, updateCharacterById, deleteCharacterById };
+module.exports = { createNewCharacter, getAllCharacters, getCharacterDetails, updateCharacterById, deleteCharacterById };

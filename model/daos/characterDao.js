@@ -1,4 +1,5 @@
 const Character = require("../models/characterModel");
+const Movie = require("../models/movieModel")
 
 const createNewCharacter = async (newCharacter) => {
   try {
@@ -25,6 +26,19 @@ const getFilteredCharacters = async (filters) => {
       where: filters,
     });
     return characters;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const getCharacterDetails = async (characterId) => {
+  try {
+    return await Character.findOne({
+      where: {
+        id: characterId,
+      },
+      include: { model: Movie },
+    });
   } catch (e) {
     console.log(e);
   }
@@ -59,6 +73,7 @@ module.exports = {
   createNewCharacter,
   getAllCharacters,
   getFilteredCharacters,
+  getCharacterDetails,
   updateCharacterById,
-  deleteCharacterById
+  deleteCharacterById,
 };
