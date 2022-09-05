@@ -94,6 +94,50 @@ const getMovieDetails = async (movieId) => {
   }
 };
 
+const updateMovieById = async (movieId, newMovie) => {
+  try {
+    const { image, title, date, stars, characterIds, genres } = newMovie;
+
+    // Get genres and characters from database
+    const movieGenres = await Genre.findAll({
+      where: {
+        name: {
+          [Op.or]: genres,
+        },
+      },
+    });
+    const movieCharacters = await Character.findAll({
+      where: {
+        id: {
+          [Op.or]: characterIds,
+        },
+      },
+    });
+
+    // Validate characters and genres
+    const charactersOk = movieCharacters.length === characterIds.length;
+    const genresOk = movieGenres.length === genres.length;
+    if (!charactersOk || !genresOk) return [ -2 ];
+
+    // Update movie
+    const res = await Movie.update({ image, title, date, stars }, {
+      where: {
+        id: movieId,
+      },
+    });
+    const updatedMovie = await Movie.findByPk(movieId)
+
+    // Associations
+    await updatedMovie.setCharacters(movieCharacters);
+    await updatedMovie.setGenres(movieGenres);
+
+    return res;
+  } catch (e) {
+    console.log(e);
+    return [-1];
+  }
+};
+
 const deleteMovieById = async (movieId) => {
   try {
     return await Movie.destroy({
@@ -111,5 +155,6 @@ module.exports = {
   getAllMovies,
   getFilteredMovies,
   getMovieDetails,
-  deleteMovieById
+  updateMovieById,
+  deleteMovieById,
 };

@@ -28,8 +28,13 @@ const getMovieDetails = async (movieId) => {
     return await movieDao.getMovieDetails(movieId)
 }
 
+const updateMovieById = async (movieId, newMovie) => {
+    const [ count ] = await movieDao.updateMovieById(movieId, newMovie)
+    return count
+  }
+
 const deleteMovieById = async (movieId) => {
     return await movieDao.deleteMovieById(movieId)
   }
 
-module.exports = { createNewMovie, getMovies, getMovieDetails, deleteMovieById };
+module.exports = { createNewMovie, getMovies, getMovieDetails, updateMovieById, deleteMovieById };
