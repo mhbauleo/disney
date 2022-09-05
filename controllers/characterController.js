@@ -15,7 +15,7 @@ const createNewCharacter = async (req, res) => {
 
 const getAllCharacters = async (req, res) => {
   const characters = await characterService.getCharacters(req.query);
-  res.json(characters);
+  res.json({ status: "success", data: characters });
 };
 
 const getCharacterDetails = async (req, res) => {

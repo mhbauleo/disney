@@ -1,5 +1,5 @@
 const Character = require("../models/characterModel");
-const Movie = require("../models/movieModel")
+const Movie = require("../models/movieModel");
 
 const createNewCharacter = async (newCharacter) => {
   try {
@@ -20,11 +20,30 @@ const getAllCharacters = async () => {
   }
 };
 
+const buildQuery = (filters) => {
+  const { name, age, weight, movies } = filters;
+  const query = {};
+  query.include = [{ model: Movie }];
+  
+  if (movies) {
+    query.include[0].where = {
+      id: movies,
+    };
+    query.include[0].required = true;
+  }
+
+  const whereFilters = {};
+  if (name) whereFilters.name = name;
+  if (age) whereFilters.age = age;
+  if (weight) whereFilters.weight = weight;
+  query.where = whereFilters;
+
+  return query;
+};
+
 const getFilteredCharacters = async (filters) => {
   try {
-    const characters = await Character.findAll({
-      where: filters,
-    });
+    const characters = await Character.findAll(buildQuery(filters));
     return characters;
   } catch (e) {
     console.log(e);
