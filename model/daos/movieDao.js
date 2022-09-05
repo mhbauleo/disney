@@ -94,9 +94,22 @@ const getMovieDetails = async (movieId) => {
   }
 };
 
+const deleteMovieById = async (movieId) => {
+  try {
+    return await Movie.destroy({
+      where: {
+        id: movieId,
+      },
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 module.exports = {
   createNewMovie,
   getAllMovies,
   getFilteredMovies,
-  getMovieDetails
+  getMovieDetails,
+  deleteMovieById
 };

@@ -34,4 +34,13 @@ const getMovieDetails = async (req, res) => {
       });
 };
 
-module.exports = { createNewMovie, getAllMovies, getMovieDetails };
+const deleteMovieById = async (req, res) => {
+    const count = await movieService.deleteMovieById(req.params.id)
+    if(count > 0) {
+      res.json({ status: "success", data: null })
+    } else {
+      res.status(404).json({ status: "fail", data : { "message" : "You couldn't delete the movie" } })
+    }
+  }
+
+module.exports = { createNewMovie, getAllMovies, getMovieDetails, deleteMovieById };

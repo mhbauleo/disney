@@ -27,4 +27,9 @@ const getMovies = async (query) => {
 const getMovieDetails = async (movieId) => {
     return await movieDao.getMovieDetails(movieId)
 }
-module.exports = { createNewMovie, getMovies, getMovieDetails };
+
+const deleteMovieById = async (movieId) => {
+    return await movieDao.deleteMovieById(movieId)
+  }
+
+module.exports = { createNewMovie, getMovies, getMovieDetails, deleteMovieById };
