@@ -8,11 +8,11 @@ const createNewUser = async (newUser) => {
   }
 };
 
-const getUserByUsername = async (username) => {
+const getUserByEmail = async (email) => {
   try {
     return await User.findOne({
       where: {
-        username,
+        email,
       },
     });
   } catch (e) {
@@ -20,4 +20,4 @@ const getUserByUsername = async (username) => {
   }
 };
 
-module.exports = { createNewUser, getUserByUsername };
+module.exports = { createNewUser, getUserByEmail };
