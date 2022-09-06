@@ -3,14 +3,14 @@ const characterService = require("../services/characterService");
 const createNewCharacter = async (req, res) => {
   const image = req.file.path;
   const { name, age, weight, story } = req.body;
-  const response = await characterService.createNewCharacter({
+  const characterCreated = await characterService.createNewCharacter({
     image,
     name,
     age,
     weight,
     story,
   });
-  res.json(response);
+  res.status(201).json({ status: "success", data: characterCreated });
 };
 
 const getAllCharacters = async (req, res) => {
@@ -19,14 +19,14 @@ const getAllCharacters = async (req, res) => {
 };
 
 const getCharacterDetails = async (req, res) => {
-  const details = await characterService.getCharacterDetails(req.params.id)
+  const details = await characterService.getCharacterDetails(req.params.id);
   details
     ? res.json({ status: "success", data: details })
     : res.status(404).json({
         status: "fail",
         data: { message: "Character not found" },
       });
-}
+};
 
 const updateCharacterById = async (req, res) => {
   const image = req.file.path;
@@ -37,22 +37,37 @@ const updateCharacterById = async (req, res) => {
     age,
     weight,
     story,
-  })
-  if(count === -1) return res.status(500).json({ status: "error", message: "Internal server error" })
-  if(count > 0) {
-    res.json({ status: "success", data: null })
+  });
+  if (count === -1)
+    return res
+      .status(500)
+      .json({ status: "error", message: "Internal server error" });
+  if (count > 0) {
+    res.json({ status: "success", data: null });
   } else {
-    res.status(404).json({ status: "fail", data : { "message" : "You couldn't update the character" } })
+    res.status(404).json({
+      status: "fail",
+      data: { message: "You couldn't update the character" },
+    });
   }
-}
+};
 
 const deleteCharacterById = async (req, res) => {
-  const count = await characterService.deleteCharacterById(req.params.id)
-  if(count > 0) {
-    res.json({ status: "success", data: null })
+  const count = await characterService.deleteCharacterById(req.params.id);
+  if (count > 0) {
+    res.json({ status: "success", data: null });
   } else {
-    res.status(404).json({ status: "fail", data : { "message" : "You couldn't delete the character" } })
+    res.status(404).json({
+      status: "fail",
+      data: { message: "You couldn't delete the character" },
+    });
   }
-}
+};
 
-module.exports = { createNewCharacter, getAllCharacters, getCharacterDetails, updateCharacterById, deleteCharacterById };
+module.exports = {
+  createNewCharacter,
+  getAllCharacters,
+  getCharacterDetails,
+  updateCharacterById,
+  deleteCharacterById,
+};

@@ -12,7 +12,7 @@ const register = async (email, password) => {
     email,
     password: hashedPassword,
   });
-  console.log(createdUser)
+
   if(createdUser) sendEmail('Welcome', '<h1>Welcome!</h1>', createdUser.email);
   return createdUser;
 };
