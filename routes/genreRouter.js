@@ -3,6 +3,8 @@ const router = express.Router()
 
 const genreController = require('../controllers/genreController')
 
-router.get('/', genreController.getAllGenres)
+const { auth } = require('../middlewares/auth')
+
+router.get('/', auth, genreController.getAllGenres)
 
 module.exports = router
