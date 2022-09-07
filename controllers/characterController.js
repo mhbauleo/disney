@@ -1,7 +1,13 @@
 const characterService = require("../services/characterService");
 
 const createNewCharacter = async (req, res) => {
-  const image = req.file.path;
+  const image = req.file?.path;
+  if (!image)
+    return res.status(422).json({
+      status: "fail",
+      data: { message: "image is required" },
+    });
+
   const { name, age, weight, story } = req.body;
   const characterCreated = await characterService.createNewCharacter({
     image,
@@ -29,7 +35,13 @@ const getCharacterDetails = async (req, res) => {
 };
 
 const updateCharacterById = async (req, res) => {
-  const image = req.file.path;
+  const image = req.file?.path;
+  if (!image)
+    return res.status(422).json({
+      status: "fail",
+      data: { message: "image is required" },
+    });
+
   const { name, age, weight, story } = req.body;
   const count = await characterService.updateCharacterById(req.params.id, {
     image,

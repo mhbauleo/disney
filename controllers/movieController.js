@@ -1,7 +1,13 @@
 const movieService = require("../services/movieService");
 
 const createNewMovie = async (req, res) => {
-  const image = req.file.path;
+  const image = req.file?.path;
+  if (!image)
+    return res.status(422).json({
+      status: "fail",
+      data: { message: "image is required" },
+    });
+
   const { title, date, stars, characterIds, genres } = req.body;
   const movieCreated = await movieService.createNewMovie({
     image,
@@ -35,7 +41,13 @@ const getMovieDetails = async (req, res) => {
 };
 
 const updateMovieById = async (req, res) => {
-  const image = req.file.path;
+  const image = req.file?.path;
+  if (!image)
+    return res.status(422).json({
+      status: "fail",
+      data: { message: "image is required" },
+    });
+
   const { title, date, stars, characterIds, genres } = req.body;
   const count = await movieService.updateMovieById(req.params.id, {
     image,

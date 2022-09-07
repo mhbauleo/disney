@@ -5,11 +5,12 @@ const characterController = require('../controllers/characterController')
 
 const upload = require('../middlewares/multer')
 const { auth } = require('../middlewares/auth')
+const { characterJoiValidator } = require('../middlewares/joiValidator')
 
-router.post('/', auth, upload, characterController.createNewCharacter)
+router.post('/', auth, upload, characterJoiValidator, characterController.createNewCharacter)
 router.get('/', auth, characterController.getAllCharacters)
 router.get('/:id', auth, characterController.getCharacterDetails)
-router.put('/:id', auth, upload, characterController.updateCharacterById)
+router.put('/:id', auth, upload, characterJoiValidator, characterController.updateCharacterById)
 router.delete('/:id', auth, characterController.deleteCharacterById)
 
 module.exports = router
