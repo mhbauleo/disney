@@ -55,7 +55,7 @@ const getAllMovies = async () => {
 const buildQuery = (filters) => {
   const { title, stars, genre, order } = filters;
   const query = {};
-  query.include = [{ model: Genre }];
+  query.include = [{ model: Genre, through: {attributes: []} }];
   if (genre) {
     query.include[0].where = {
       id: genre,
@@ -87,7 +87,7 @@ const getMovieDetails = async (movieId) => {
       where: {
         id: movieId,
       },
-      include: [{ model: Character }, { model: Genre }],
+      include: [{ model: Character, through: {attributes: []} }, { model: Genre, through: {attributes: []} }],
     });
   } catch (e) {
     console.log(e);

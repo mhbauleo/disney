@@ -23,7 +23,7 @@ const getAllCharacters = async () => {
 const buildQuery = (filters) => {
   const { name, age, weight, movies } = filters;
   const query = {};
-  query.include = [{ model: Movie }];
+  query.include = [{ model: Movie, through: {attributes: []} }];
   
   if (movies) {
     query.include[0].where = {
@@ -56,7 +56,7 @@ const getCharacterDetails = async (characterId) => {
       where: {
         id: characterId,
       },
-      include: { model: Movie },
+      include: { model: Movie, through: {attributes: []} },
     });
   } catch (e) {
     console.log(e);
