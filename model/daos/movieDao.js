@@ -126,6 +126,7 @@ const updateMovieById = async (movieId, newMovie) => {
       },
     });
     const updatedMovie = await Movie.findByPk(movieId)
+    if(!updatedMovie) return [ 0 ]
 
     // Associations
     await updatedMovie.setCharacters(movieCharacters);

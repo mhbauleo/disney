@@ -64,7 +64,7 @@ const updateMovieById = async (req, res) => {
   if (count === -2)
     return res.status(422).json({
       status: "fail",
-      data: { message: "Something went wrong" },
+      data: { message: "Invalid characters or genres" },
     });
   if (count > 0) {
     res.json({ status: "success", data: null });
