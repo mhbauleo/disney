@@ -21,7 +21,7 @@ const createNewMovie = async (req, res) => {
     ? res.status(201).json({ status: "success", data: movieCreated })
     : res.status(422).json({
         status: "fail",
-        data: { message: "Something went wrong" },
+        data: { message: "Invalid characters or genres" },
       });
 };
 
