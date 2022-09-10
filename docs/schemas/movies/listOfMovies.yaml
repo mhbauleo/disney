@@ -1,0 +1,22 @@
+components:
+  schemas:
+    ListOfMovie:
+      type: object
+      required:
+        - image
+        - title
+        - date
+      properties:
+        image:
+          type: string
+          description: The path to the image
+        title:
+          type: string
+          description: The name of the character
+        date:
+          type: string
+          description: The name of the character
+      example:
+        image: images/Frozen-1662403023909.jpeg
+        title: Frozen
+        date: 2014-01-02

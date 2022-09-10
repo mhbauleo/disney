@@ -1,0 +1,17 @@
+components:
+  schemas:
+    ListOfCharacter:
+      type: object
+      required:
+        - image
+        - name
+      properties:
+        image:
+          type: string
+          description: The path to the image
+        name:
+          type: string
+          description: The name of the character
+      example:
+        image: images/Elsa-1662402137724.jpeg
+        name: Elsa

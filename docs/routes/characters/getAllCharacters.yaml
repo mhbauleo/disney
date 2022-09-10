@@ -1,0 +1,91 @@
+paths:
+  /characters:
+    get:
+      summary: Get all characters according to params.
+      tags:
+        - Character
+      parameters:
+      - name: name
+        in: query
+        description: The name of the character
+        type: string
+      - name: age
+        in: query
+        description: The age of the character
+        type: integer
+      - name: weight
+        in: query
+        description: The weight of the character
+        type: number
+      - name: movies
+        in: query
+        description: The movies of the character
+        type: number
+      responses:
+        "200":
+          description: Returns a list of characters
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: "#/components/schemas/ListOfCharacter"
+                  - type: array
+                    items:
+                      $ref: "#/components/schemas/Character"
+              examples:
+                withoutParams:
+                  value:
+                    status: success
+                    data:
+                      - image: images/Elsa-1662402137724.jpeg
+                        name: Elsa
+                withParams:
+                  value:
+                    status: success
+                    data:
+                      - id: 1
+                        image: images/Elsa-1662402137724.jpeg
+                        name: Elsa
+                        age: 21
+                        weight: 54
+                        story: Once upon a time, there were two princesses named Anna and Elsa. They were sisters, and the best of friends. Elsa was born with magic ice powers, and the sisters loved building snowmen and playing on the ice Elsa made. One day, while playing, Elsa slipped and accidentally struck Anna in the head with her ice magic. She started to get very cold and weak, so their parents took her to the trolls, who had their own magic.
+                        movies: 
+                          - id: 5
+                            image: images/Frozen-1662403023909.jpeg
+                            title: Frozen
+                            date: 2014-01-02
+                            stars: 3
+        "400":
+          description: Token not provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Token not provided
+        "401":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Invalid token

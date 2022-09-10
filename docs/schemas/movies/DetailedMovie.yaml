@@ -1,0 +1,38 @@
+components:
+  schemas:
+    DetailedMovie:
+      type: object
+      required:
+        - id
+        - image
+        - title
+        - date
+        - stars
+        - characters
+        - genres
+      properties:
+        id:
+          type: integer
+          description: The auto-generated id
+        image:
+          type: string
+          description: The path to the image
+        title:
+          type: string
+          description: The title of the movie
+        date:
+          type: string
+          description: The date of the movie
+        stars:
+          type: integer
+          description: The stars of the movie
+        characters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Character"
+          description: The characters of the movie
+        genres:
+          type: array
+          items:
+            $ref: "#/components/schemas/Genre"
+          description: The genres of the movie

@@ -1,0 +1,89 @@
+paths:
+  /movies:
+    get:
+      summary: Get all movies according to params.
+      tags:
+        - Movie
+      parameters:
+      - name: title
+        in: query
+        description: The title of the character
+        type: string
+      - name: stars
+        in: query
+        description: The stars of the character
+        type: integer
+      - name: genre
+        in: query
+        description: The genre of the character
+        type: number
+      - name: order
+        in: query
+        description: The order of the character
+        type: number
+      responses:
+        "200":
+          description: Returns a list of movies
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: array
+                    items:
+                      $ref: "#/components/schemas/ListOfMovie"
+                  - type: array
+                    items:
+                      $ref: "#/components/schemas/Movie"
+              examples:
+                withoutParams:
+                  value:
+                    status: success
+                    data:
+                      - image: images/Frozen-1662403023909.jpeg
+                        title: Frozen
+                        date: 2014-01-02
+                withParams:
+                  value:
+                    status: success
+                    data:
+                      - id: 1
+                        image: images/Frozen-1662403023909.jpeg
+                        title: Frozen
+                        date: 2014-01-02
+                        stars: 3
+                        genres: 
+                          - id: 5
+                            name: musical
+                            image: images/musical-1662402137568.jpeg
+        "400":
+          description: Token not provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Token not provided
+        "401":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Invalid token

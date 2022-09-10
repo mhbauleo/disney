@@ -1,0 +1,73 @@
+paths:
+  /movies:
+    post:
+      summary: Creates a new movie 
+      tags:
+        - Movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewMovie'
+      responses:
+        "201": 
+          description: The created movie
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    $ref: "#/components/schemas/Movie"
+        "400":
+          description: Token not provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Token not provided
+        "401":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Invalid token
+        "422":
+          description: Error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: image is required

@@ -1,0 +1,22 @@
+components:
+  schemas:
+    Genre:
+      type: object
+      required:
+        - id
+        - name
+        - image
+      properties:
+        id:
+          type: integer
+          description: The auto-generated id
+        name:
+          type: string
+          description: The name of the genre
+        image:
+          type: string
+          description: The path to the image
+      example:
+        id: 1
+        name: Action
+        image: images/Action-1662403023909.jpeg

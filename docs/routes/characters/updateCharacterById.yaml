@@ -1,0 +1,112 @@
+paths:
+  /characters/{id}:
+    put:
+      summary: Update a character
+      tags:
+        - Character
+      parameters:
+      - name: id
+        in: path
+        description: path parameter takes the character id
+        required: true
+        type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewCharacter'
+      responses:
+        "200":
+          description: Successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: integer
+                    nullable: true
+        "400":
+          description: Token not provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Token not provided
+        "401":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Invalid token
+        "404":
+          description: Character not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: You couldn't update the character
+        "422":
+          description: Error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: image is required
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: error
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Internal server error

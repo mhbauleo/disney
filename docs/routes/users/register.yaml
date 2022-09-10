@@ -1,0 +1,58 @@
+paths:
+  /auth/register:
+    post:
+      summary: Register new user
+      tags:
+        - User
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/User'
+      responses:
+        "201":
+          description: User created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: integer
+                    nullable: true
+        "409":
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: User already exists.
+        "422":
+          description: Error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: \"email\" must be a valid email

@@ -1,0 +1,32 @@
+components:
+  schemas:
+    Movie:
+      type: object
+      required:
+        - id
+        - image
+        - title
+        - date
+        - stars
+      properties:
+        id:
+          type: integer
+          description: The auto-generated id
+        image:
+          type: string
+          description: The path to the image
+        title:
+          type: string
+          description: The title of the movie
+        date:
+          type: string
+          description: The date of the movie
+        stars:
+          type: integer
+          description: The stars of the movie
+      example:
+        id: 1
+        image: images/Frozen-1662403023909.jpeg
+        title: Frozen
+        date: 2014-01-02
+        stars: 3

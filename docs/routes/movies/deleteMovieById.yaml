@@ -1,0 +1,74 @@
+paths:
+  /movies/{id}:
+    delete:
+      summary: Delete a movie
+      tags:
+        - Movie
+      parameters:
+      - name: id
+        in: path
+        description: path parameter takes the movie id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: Successfully deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: integer
+                    nullable: true
+        "400":
+          description: Token not provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Token not provided
+        "401":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Invalid token
+        "404":
+          description: Movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: You couldn't delete the movie

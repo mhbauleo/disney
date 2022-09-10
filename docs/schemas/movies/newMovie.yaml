@@ -1,0 +1,45 @@
+components:
+  requestBodies:
+    NewMovie:
+      type: object
+      required:
+        - image
+        - title
+        - date
+        - stars
+        - characterIds
+        - genres
+      properties:
+        image:
+          type: string
+          description: The path to the image
+        title:
+          type: string
+          description: The title of the movie
+        date:
+          type: string
+          description: The date of the movie
+        stars:
+          type: integer
+          description: The stars of the movie
+        characterIds:
+          type: array
+          items:
+            type: integer
+          description: The character ids of the movie
+        genres:
+          type: array
+          items:
+            type: string
+          description: The genres names of the movie
+      example:
+        image: Frozen.jpeg
+        title: Frozen
+        date: 2014-01-02
+        stars: 3
+        characterIds: 
+          - 1
+          - 2
+        genres:
+          - action
+          - adventure

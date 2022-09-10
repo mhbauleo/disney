@@ -1,0 +1,43 @@
+components:
+  schemas:
+    DetailedCharacter:
+      type: object
+      required:
+        - id
+        - image
+        - name
+        - age
+        - weight
+        - story
+        - movies
+      properties:
+        id:
+          type: integer
+          description: The auto-generated id
+          example: 1
+        image:
+          type: string
+          description: The path to the image
+          example: images/Elsa-1662402137724.jpeg
+        name:
+          type: string
+          description: The name of the character
+          example: Elsa
+        age:
+          type: integer
+          description: The age of the character
+          example: 21
+        weight:
+          type: float
+          description: The weight of the character
+          example: 54
+        story:
+          type: string
+          description: The story of the character
+          example: Once upon a time, there were two princesses named Anna and Elsa. They were sisters, and the best of friends. Elsa was born with magic ice powers, and the sisters loved building snowmen and playing on the ice Elsa made. One day, while playing, Elsa slipped and accidentally struck Anna in the head with her ice magic. She started to get very cold and weak, so their parents took her to the trolls, who had their own magic.
+        movies:
+          type: array
+          items:
+            $ref: "#/components/schemas/Movie"
+          description: The movies of the character
+

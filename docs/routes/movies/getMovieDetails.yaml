@@ -1,0 +1,73 @@
+paths:
+  /movies/{id}:
+    get:
+      summary: Gets the movie with given id 
+      tags:
+        - Movie
+      parameters:
+      - name: id
+        in: path
+        description: path parameter takes the movie id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: get details from movie
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    $ref: "#/components/schemas/DetailedMovie"
+        "400":
+          description: Token not provided
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Token not provided
+        "401":
+          description: Invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Invalid token
+        "404":
+          description: Movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  status:
+                    type: string
+                    example: fail
+                  data:
+                    type: object
+                    properties:
+                      message: 
+                        type: string
+                        example: Movie not found
