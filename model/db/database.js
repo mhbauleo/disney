@@ -1,10 +1,21 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 
 const dbConfig = require("../../config/dbConfig");
 
-const db = new Sequelize(dbConfig.DB_NAME, dbConfig.DB_USER, dbConfig.DB_PASSWORD, {
+const sequelizeConfig = {
   host: dbConfig.DB_HOST,
   dialect: dbConfig.DIALECT,
-});
+};
 
-module.exports = db;
+if (process.env.NODE_ENV === "test") {
+  sequelizeConfig.logging = false;
+}
+
+const db = new Sequelize(
+  dbConfig.DB_NAME,
+  dbConfig.DB_USER,
+  dbConfig.DB_PASSWORD,
+  sequelizeConfig
+);
+
+module.exports = { db, DataTypes };

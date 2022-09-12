@@ -1,18 +1,17 @@
-const Sequelize = require("sequelize");
-const db = require("../db/database");
+const { db, DataTypes} = require("../db/database");
 
 const User = db.define("user", {
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
   email: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   password: {
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
   }
 },

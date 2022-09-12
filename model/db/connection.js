@@ -1,4 +1,5 @@
-const db = require("./database");
+const { db } = require("./database");
+const { initGenres } = require("./initGenres")
 const Movie = require("../models/movieModel")
 const Genre = require("../models/genreModel")
 const Character = require("../models/characterModel")
@@ -9,14 +10,13 @@ const User = require("../models/userModel")
 async function dbConnection() {
   try {
     await db.authenticate();
-    console.log("Database online");
     await Character.sync()
     await Movie.sync()
     await Genre.sync()
     await MovieGenre.sync()
     await CharacterMovie.sync()
     await User.sync()
-    console.log("Tables created")
+    initGenres()
   } catch (error) {
     throw new Error(error);
   }

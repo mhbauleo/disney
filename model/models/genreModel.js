@@ -1,20 +1,19 @@
-const Sequelize = require("sequelize");
-const db = require("../db/database");
+const { db, DataTypes} = require("../db/database");
 
 const Genre = db.define(
   "genre",
   {
     id: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     name: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     image: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     }
   },

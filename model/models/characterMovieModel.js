@@ -1,20 +1,19 @@
-const Sequelize = require("sequelize");
 const Character = require("./characterModel")
 const Movie = require("./movieModel");
-const db = require("../db/database");
+const { db, DataTypes} = require("../db/database");
 
 const CharacterMovie = db.define(
   "character_movie",
   {
     movie_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: Movie,
             key: 'id'
         }
     },
     character_id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         references: {
             model: Character,
             key: 'id'
