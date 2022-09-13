@@ -2,10 +2,7 @@
   "name": "disney",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "engines": {
-    "node": "16.x"
-  },
+  "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
