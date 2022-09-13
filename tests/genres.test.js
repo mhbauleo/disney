@@ -1,4 +1,4 @@
-const { app, server } = require('../server')
+const { app, server } = require("../server");
 const request = require("supertest");
 const expect = require("chai").expect;
 const { verifyJWT } = require("../helpers/jwt");
@@ -13,8 +13,8 @@ describe("Genres", () => {
   let authToken;
 
   beforeEach(() => {
-    jest.setTimeout('10000')
-})
+    jest.setTimeout(10000);
+  });
   beforeAll(async () => {
     await User.destroy({ truncate: true, cascade: false });
 

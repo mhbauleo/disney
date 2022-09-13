@@ -61,8 +61,8 @@ describe("Movies", () => {
   let spidermanId;
   let authToken;
   beforeEach(() => {
-    jest.setTimeout('10000')
-})
+    jest.setTimeout(10000);
+  });
   beforeAll(async () => {
     await Character.destroy({ truncate: { cascade: true } });
     await User.destroy({ truncate: true, cascade: false });
