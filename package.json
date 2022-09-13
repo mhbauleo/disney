@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "test": "NODE_ENV=test jest --runInBand --verbose tests/auth.test.js tests/genres.test.js tests/characters.test.js tests/movies.test.js"
   },
   "keywords": [],
   "author": "",
@@ -23,5 +25,11 @@
     "sequelize": "^6.21.4",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "jest": "^29.0.3",
+    "mocha": "^10.0.0",
+    "supertest": "^6.2.4"
   }
 }
