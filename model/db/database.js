@@ -7,6 +7,9 @@ const sequelizeConfig = {
   dialect: dbConfig.DIALECT,
 };
 
+if(dbConfig.DIALECT === 'postgres') {
+  sequelizeConfig.dialectOptions = {ssl: {rejectUnauthorized: false}}
+}
 if (process.env.NODE_ENV === "test") {
   sequelizeConfig.logging = false;
 }
