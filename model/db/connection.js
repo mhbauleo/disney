@@ -16,7 +16,7 @@ async function dbConnection() {
     await MovieGenre.sync()
     await CharacterMovie.sync()
     await User.sync()
-    initGenres()
+    await initGenres()
   } catch (error) {
     throw new Error(error);
   }

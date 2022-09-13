@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "NODE_ENV=development nodemon server.js",
-    "test": "NODE_ENV=test jest --runInBand --verbose tests/auth.test.js tests/genres.test.js tests/characters.test.js tests/movies.test.js"
+    "test": "NODE_ENV=test node tests/initTestDb.js && NODE_ENV=test jest --detectOpenHandles --runInBand --verbose tests/auth.test.js tests/genres.test.js tests/characters.test.js tests/movies.test.js"
   },
   "keywords": [],
   "author": "",
