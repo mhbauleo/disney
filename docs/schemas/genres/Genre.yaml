@@ -18,5 +18,5 @@ components:
           description: The path to the image
       example:
         id: 1
-        name: Action
-        image: images/Action-1662403023909.jpeg
+        name: musical
+        image: images/genres/musical.jpg

@@ -14,18 +14,23 @@ components:
         id:
           type: integer
           description: The auto-generated id
+          example: 1
         image:
           type: string
           description: The path to the image
+          example: images/Frozen-1662403023909.jpeg
         title:
           type: string
           description: The title of the movie
+          example: Frozen
         date:
           type: string
           description: The date of the movie
+          example: 2014-01-02
         stars:
           type: integer
           description: The stars of the movie
+          example: 3
         characters:
           type: array
           items:
