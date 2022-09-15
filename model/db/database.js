@@ -7,7 +7,7 @@ const sequelizeConfig = {
   dialect: dbConfig.DIALECT,
 };
 
-if(dbConfig.DIALECT === 'postgres') {
+if(dbConfig.DIALECT === 'postgres' && dbConfig.CLOUD === 'heroku') {
   sequelizeConfig.dialectOptions = {ssl: {rejectUnauthorized: false}}
 }
 if (process.env.NODE_ENV === "test") {

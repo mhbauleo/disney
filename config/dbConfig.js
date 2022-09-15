@@ -9,6 +9,7 @@ const dbConfig = {
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_NAME: NAME,
   DIALECT: process.env.DIALECT,
+  CLOUD: process.env.CLOUD
 };
 
 module.exports = dbConfig;
